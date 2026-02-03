@@ -6,6 +6,37 @@ public class RadioTest {
 
 
     @Test
+        public void WasSetMaxParameterInConstr() {
+            Radio radio = new Radio();
+            radio.setCurrentStation(5);
+            Assertions.assertEquals(0, radio.getMinStation());
+            Assertions.assertEquals(9, radio.getMaxStation());
+            Assertions.assertEquals(5, radio.getCurrentStation());
+            Assertions.assertEquals(0, radio.getMinVolume());
+        }
+
+    @Test
+    public void ConstrWithSetSize() {
+        Radio radio = new Radio(20);
+
+        int expected = 5;
+        Assertions.assertEquals(0, radio.getMinStation());
+        Assertions.assertEquals(19, radio.getMaxStation());
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+    @Test
+    public void shouldSetNumberInSetSize() {
+        Radio radio = new Radio(20);
+        radio.setCurrentradioStation(radio.getMinStation() + 15);
+
+        int expected = radio.getMinStation() + 15;
+        int actual = radio.getcurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+
+        @Test
     public void test() {
         Radio radio = new Radio();
 
