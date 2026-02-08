@@ -14,9 +14,9 @@ public class Radio {
 
     }
 
-    public Radio(int maxStation) {
-        this.maxStation = 0;
-        this.maxStation = maxStation - 1;
+    public Radio(int size) {
+        this.minStation = 0;
+        this.maxStation = size - 1;
         this.currentStation = 0;
     }
 
@@ -28,95 +28,110 @@ public class Radio {
         return minStation;
     }
 
-    public int getcurrentStation() {
+    public int getCurrentStation() {
         return currentStation;
     }
 
-    public void setCurrentradioStation(int Station) {
-        if (Station < minStation) {
-            this.currentStation = Station;
-        } else if (Station > maxStation) {
-            this.currentStation = maxStation;
+    public int setCurrentStation(int station) {
+        if (station < 0 || station > maxStation) {
+            currentStation = 0;
         } else {
-            this.currentStation = Station;
+            currentStation = station;
+        }
+        return currentStation;
+    }
+
+    public void next() {
+        if (currentStation != 9) {
+            currentStation++;
+        } else {
+
+            currentStation = 0;
+        }
+
+    }
+
+    public void prev() {
+        if (currentStation != 0) {
+            currentStation--;
+        } else {
+
+            currentStation = 9;
         }
     }
 
-
-    public void next() {
-    if (currentStation != 9) {
-        currentStation++;
-    } else {
-
-        currentStation = 0;
+    public int getMaxVolume() {
+        return maxVolume;
     }
 
-}
-
-public void prev() {
-    if (currentStation != 0) {
-        currentStation--;
-    } else {
-
-        currentStation = 9;
+    public int getMinVolume() {
+        return minVolume;
     }
 
-}
-
-public int getCurrentStation() {
-    return currentStation;
-}
-
-public void setCurrentStation(int currentStation) {
-    if (currentStation < 0) {
-        return;
+    public int getCurrentVolume() {
+        return currentVolume;
     }
-    if (currentStation > 9) {
-        return;
+
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
+            return;
+        }
+        if (currentVolume > 100) {
+            currentVolume = 100;
+        }
+        this.currentVolume = currentVolume;
     }
-    this.currentStation = currentStation;
-}
 
-public int getMaxVolume() {
-    return maxVolume;
-}
-
-public int getMinVolume() {
-    return minVolume;
-}
-
-public int getCurrentVolume() {
-    return currentVolume;
-}
-
-public void setCurrentVolume(int currentVolume) {
-    if (currentVolume < 0) {
-        return;
+    public void increaseVolume() {
+        if (currentVolume < maxVolume) {
+            currentVolume++;
+        }
     }
-    if (currentVolume > 100) {
-        currentVolume = 100;
 
+    public void decreaseVolume() {
+        if (currentVolume > minVolume) {
+            currentVolume--;
+        }
     }
-    this.currentVolume = currentVolume;
-}
 
-public void up() {
-    if (currentVolume != 100) {
-        currentVolume++;
-    } else {
-        currentVolume = 100;
+    public void up() {
+        if (currentVolume != 100) {
+            currentVolume++;
+        } else {
+            currentVolume = 100;
 
+
+        }
 
     }
 
+    public void down() {
+        if (currentVolume != 0) {
+            currentVolume--;
+        } else {
+            currentVolume = 0;
+        }
+    }
+
+    public void setCurrentMinVolume() {
+        this.currentVolume = 0;
+    }
+
+    public void setMaxVolume() {
+        this.maxVolume = maxVolume;
+    }
+
+
 }
 
-public void down() {
-    if (currentVolume != 0) {
-        currentVolume--;
-    } else {
-        currentVolume = 0;
-    }
-  }
-}
+
+
+
+
+
+
+
+
+
+
 
