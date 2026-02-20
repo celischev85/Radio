@@ -40,6 +40,85 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void shouldNotSetUnderStation() {
+        Radio radio = new Radio();
+
+        radio.setCurrentStation(-1);  // установка номера радиостанции ниже минимального - не работает
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetMinStation() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(2);  // установка минимального номера радиостанции
+        radio.setMinStation();
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetAfterMinStation() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(1); // установка номера радиостанции выше минимального
+
+        int expected = 1;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetUnderLastStation() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(8); // установка номера радиостанции ниже максимального
+
+        int expected = 8;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetMaxStation() {
+        Radio radio = new Radio();
+        radio.setMaxStation();  // установка максимального номера радиостанции
+
+        int expected = 9;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotSetAfterMaxStation() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(10); // установка номера радиостанции после максимального  - не работает
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldIncreaseMinStation() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(0);
+        radio.next();               // следующий номер радиостанции выше минимального
+
+        int expected = 1;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
 
 
     @Test
