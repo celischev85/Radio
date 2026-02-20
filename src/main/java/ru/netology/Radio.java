@@ -122,7 +122,16 @@ public class Radio {
     }
 
 
+    public void setMinStation() {
+        this.currentStation = 0;
+    }
+
+    public void setMaxStation() {
+        this.currentStation = 9; // или другое максимально допустимое значение
+    }
 }
+
+
 
 
 
